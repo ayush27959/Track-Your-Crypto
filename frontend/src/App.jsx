@@ -1,33 +1,36 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import Guard from "./Guard";
+// Fix 1: Capital Loader matching file name
+import Loader from "./components/shared/Loader"; 
 
 const Homepage = lazy(() => import("./components/Home"));
 const Homelayout = lazy(() => import("./layout/Homelayout"));
-const Login = lazy(() => import("./components/Home/Login")); // 👈 Added Login Import
+const Login = lazy(() => import("./components/Home/Login")); 
 const Signup = lazy(() => import("./components/Home/Signup"));
 const PageNotFound = lazy(() => import("./components/PageNotFound"));
 const UserLayout = lazy(() => import("./components/user/UserLayout"));
-const ForgotPassword = lazy(() => import("./components/forgotPassword"));
+
+// Fix 2: Capital ForgotPassword match
+const ForgotPassword = lazy(() => import("./components/ForgotPassword"));
+
 const Dashboard = lazy(() => import("./components/shared/Dashboard"));
 const Reports = lazy(() => import("./components/shared/Reports"));
 const Transaction = lazy(() => import("./components/shared/Transaction"));
+
+// Fix 3: Admin Layout path verification
 const AdminLayout = lazy(() => import("./components/Admin/AdminLayout"));
+
 const Users = lazy(() => import("./components/shared/Users"));
 const Account = lazy(() => import("./components/shared/Account"));
 const LiveMarket = lazy(() => import("./components/shared/LiveMarket"));
 const PortfolioHoldings = lazy(() => import("./components/shared/PortfolioHoldings"));
 
-const Homepagestyle = lazy(() =>
-  import("./components/Home/Homepagestyle")
-);
-const Learnmore = lazy(() =>
-  import("./learnmore/more")
-);
-
-import 'react-toastify/dist/ReactToastify.css';
-import Guard from "./Guard";
-import Loader from "./components/shared/loader";
+const Homepagestyle = lazy(() => import("./components/Home/Homepagestyle"));
+const Learnmore = lazy(() => import("./learnmore/more"));
 
 const App = () => {
   return (
@@ -37,16 +40,15 @@ const App = () => {
           <Route path="/" element={<Homepagestyle />} />
           <Route path="/home" element={<Homepage />} />
           
-          {/* 👈 Added Login and fixed Signup routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/Signup" element={<Signup />} /> {/* Backup for capital S */}
+          <Route path="/Signup" element={<Signup />} />
           
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/learnmore" element={<Learnmore />} />
           <Route path="/Learnmore" element={<Learnmore />} />
 
-          {/* admin related routes */}
+          {/* Admin Routes */}
           <Route
             path="/app/admin"
             element={
@@ -63,7 +65,7 @@ const App = () => {
             <Route path="LiveMarket" element={<LiveMarket />} />
           </Route>
 
-          {/* user related routes */}
+          {/* User Routes */}
           <Route
             path="/app/user"
             element={
