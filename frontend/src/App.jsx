@@ -22,7 +22,7 @@ const Users = lazy(() => import("./components/shared/Users"));
 const Account = lazy(() => import("./components/shared/Account"));
 
 // LiveMarket ki jagah actual 'CryptoNews' component import kiya gaya hai
-const CryptoNews = lazy(() => import("./components/shared/CryptoNews"));
+const CryptoNews = lazy(() => import("./components/shared/CryptoNews/CryptoNews"));
 
 const Homepagestyle = lazy(() => import("./components/Home/Homepagestyle"));
 const Learnmore = lazy(() => import("./learnmore/more"));
