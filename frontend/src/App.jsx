@@ -8,11 +8,11 @@ import Loader from "./components/shared/Loader";
 
 const Homepage = lazy(() => import("./components/Home"));
 const Homelayout = lazy(() => import("./layout/Homelayout"));
-const Login = lazy(() => import("./components/Home/Login"));
+const Login = lazy(() => import("./components/Home/login"));
 const Signup = lazy(() => import("./components/Home/Signup"));
 const PageNotFound = lazy(() => import("./components/PageNotFound"));
 const UserLayout = lazy(() => import("./components/user/UserLayout"));
-const ForgotPassword = lazy(() => import("./components/ForgotPassword"));
+const ForgotPassword = lazy(() => import("./components/forgotPassword"));
 
 const Dashboard = lazy(() => import("./components/shared/Dashboard"));
 const Reports = lazy(() => import("./components/shared/Reports"));
