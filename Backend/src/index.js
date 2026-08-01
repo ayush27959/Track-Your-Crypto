@@ -24,8 +24,15 @@ app.use(cookieParser());
 // ✅ Dynamic CORS Setup: अब यह वेंसल के सभी Preview और Main लिंक्स को ऑटोमैटिकली अलाउ करेगा
 app.use(cors({
   origin: function (origin, callback) {
-    // बिना ऑरिजिन (जैसे Postman) या लोकलहोस्ट या कोई भी वेंसल सबडोमेन (.vercel.app) हो तो अलाउ करें
-    if (!origin || origin.startsWith("http://localhost") || origin.endsWith(".vercel.app")) {
+    // Allow requests with no origin (e.g., Postman)
+    if (!origin) return callback(null, true);
+
+    // Allow localhost (http/https) and 127.0.0.1 on any port, and Vercel subdomains
+    const lower = origin.toLowerCase();
+    const isLocalhost = lower.startsWith("http://localhost") || lower.startsWith("https://localhost") || lower.startsWith("http://127.0.0.1") || lower.startsWith("https://127.0.0.1") || lower.includes("localhost:");
+    const isVercel = lower.endsWith(".vercel.app");
+
+    if (isLocalhost || isVercel) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
