@@ -5,8 +5,12 @@ import "react-toastify/dist/ReactToastify.css";
 
 import Guard from "./Guard";
 
-// Fixed: Removed non-existent 'shared' path prefix
-const Loader = lazy(() => import("./components/Loader"));
+// Fallback Loader (Inline component to ensure zero import-path failures during lazy loads)
+const Loader = () => (
+  <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+    <h2>Loading...</h2>
+  </div>
+);
 
 const Homepage = lazy(() => import("./components/Home"));
 const Homelayout = lazy(() => import("./layout/Homelayout"));
@@ -16,16 +20,14 @@ const PageNotFound = lazy(() => import("./components/PageNotFound"));
 const UserLayout = lazy(() => import("./components/user/UserLayout"));
 const ForgotPassword = lazy(() => import("./components/forgotPassword"));
 
-// Fixed: Corrected component paths based on VS Code sidebar
-const Dashboard = lazy(() => import("./components/Dashboard"));
-const Reports = lazy(() => import("./components/Reports"));
-const Transaction = lazy(() => import("./components/Transaction"));
+const Dashboard = lazy(() => import("./components/shared/Dashboard"));
+const Reports = lazy(() => import("./components/shared/Reports"));
+const Transaction = lazy(() => import("./components/shared/Transaction"));
 const AdminLayout = lazy(() => import("./components/Admin/AdminLayout"));
-const Users = lazy(() => import("./components/Users"));
-const Account = lazy(() => import("./components/Account"));
+const Users = lazy(() => import("./components/shared/Users"));
+const Account = lazy(() => import("./components/shared/Account"));
 
-// Fixed: Removed 'shared' folder from CryptoNews path
-const CryptoNews = lazy(() => import("./components/CryptoNews/CryptoNews"));
+const CryptoNews = lazy(() => import("./components/shared/CryptoNews/CryptoNews"));
 
 const Homepagestyle = lazy(() => import("./components/Home/Homepagestyle"));
 const Learnmore = lazy(() => import("./learnmore/more"));
